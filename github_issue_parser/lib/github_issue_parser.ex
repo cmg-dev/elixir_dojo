@@ -1,0 +1,2 @@
+defmodule GithubIssueParser do
+end
