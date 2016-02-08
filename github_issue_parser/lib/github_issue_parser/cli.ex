@@ -43,11 +43,12 @@ defmodule GithubIssueParser.CLI do
   @doc """
 
   """
-  def process({user, project, _count}) do
+  def process({user, project, count}) do
     GithubIssueParser.GithubIssues.fetch(user, project)
     |> decode_respose
     |> convert_to_list_of_hashdicts
     |> sort_descending
+    |> Enum.take(count)
   end
 
   @doc """
@@ -78,6 +79,15 @@ defmodule GithubIssueParser.CLI do
 
   """
   def sort_descending(list) do
+    Enum.sort(list,
+      fn i1, i2 ->
+      i1["created_at"] >= i2["created_at"] end)
+  end
+
+  @doc """
+
+  """
+  def sort_ascending(list) do
     Enum.sort(list,
       fn i1, i2 ->
       i1["created_at"] <= i2["created_at"] end)
