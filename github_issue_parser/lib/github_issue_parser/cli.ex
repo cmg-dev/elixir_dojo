@@ -6,12 +6,10 @@ defmodule GithubIssueParser.CLI do
   This module implements the basic mechanism for fetching the issues from a github projekt, using the url like
   [this](https://api.github.com/repos/user/project/issues)
   """
-
   def run(argv) do
     argv
     |> parse_args
     |> process
-
   end
 
   @doc """
@@ -42,7 +40,46 @@ defmodule GithubIssueParser.CLI do
     System.halt(0)
   end
 
+  @doc """
+
+  """
   def process({user, project, _count}) do
     GithubIssueParser.GithubIssues.fetch(user, project)
+    |> decode_respose
+    |> convert_to_list_of_hashdicts
+    |> sort_descending
+  end
+
+  @doc """
+
+  """
+  def decode_respose({:ok, body}) do
+    body
+  end
+
+  @doc """
+
+  """
+  def decode_respose({:error, error}) do
+    {_, message} = List.keyfind(error, "message", 0)
+    IO.puts "Error fetching from Github: #{message}"
+    System.halt(2)
+  end
+
+  @doc """
+
+  """
+  def convert_to_list_of_hashdicts(list) do
+    list
+    |> Enum.map(&Enum.into(&1, HashDict.new))
+  end
+
+  @doc """
+
+  """
+  def sort_descending(list) do
+    Enum.sort(list,
+      fn i1, i2 ->
+      i1["created_at"] <= i2["created_at"] end)
   end
 end

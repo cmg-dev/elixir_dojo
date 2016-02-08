@@ -15,13 +15,13 @@ defmodule GithubIssueParser.GithubIssues do
 
   """
   def handle_response({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
-    { :ok, body }
+    { :ok, :jsx.decode(body) }
   end
 
   @doc """
   This handles every other status code, which will be an error for us.
   """
   def handle_response({:ok, %HTTPoison.Response{status_code: ___, body: body}}) do
-    { :error, body }
+    { :error, :jsx.decode(body) }
   end
 end
