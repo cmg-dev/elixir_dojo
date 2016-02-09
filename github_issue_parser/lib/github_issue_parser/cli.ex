@@ -1,12 +1,14 @@
 defmodule GithubIssueParser.CLI do
 
+  import GithubIssueParser.TableFormatter
+
   @default_count 4
 
   @moduledoc """
   This module implements the basic mechanism for fetching the issues from a github projekt, using the url like
   [this](https://api.github.com/repos/user/project/issues)
   """
-  def run(argv) do
+  def main(argv) do
     argv
     |> parse_args
     |> process
@@ -49,6 +51,7 @@ defmodule GithubIssueParser.CLI do
     |> convert_to_list_of_hashdicts
     |> sort_descending
     |> Enum.take(count)
+    |> convert_to_table(["number", "created_at", "title"])
   end
 
   @doc """
