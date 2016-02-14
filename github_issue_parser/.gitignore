@@ -3,3 +3,6 @@
 /deps
 erl_crash.dump
 *.ez
+Config/config.exs
+github_issue_parser
+README.md

@@ -1,5 +1,8 @@
 defmodule GithubIssueParser.GithubIssues do
-  @user_agent [{ "User-agent", "RequestIssues christoph.gnip@5minds.com"}]
+  @github_url Application.get(:issues, :github_url)_
+  @access_token Application.get(:api, :access_token)_
+
+  @user_agent [{ "User-agent", "RequestIssues christoph.gnip@gmail.com"}]
 
   def fetch(user, project) do
     issues_url(user, project)
@@ -8,7 +11,7 @@ defmodule GithubIssueParser.GithubIssues do
   end
 
   def issues_url(user, project) do
-    "https://api.github.com/repos/#{user}/#{project}/issues"
+    "#{@github_url}#{user}/#{project}/issues?access_token=#{@access_token}"
   end
 
   @doc """
