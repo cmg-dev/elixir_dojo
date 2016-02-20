@@ -1,0 +1,9 @@
+%{"bbmustache": {:hex, :bbmustache, "1.0.3"},
+  "erlware_commons": {:hex, :erlware_commons, "0.15.0"},
+  "exrm": {:git, "https://github.com/bitwalker/exrm.git", "4c2b476aa25f35961abb783ba64433fe509fff82", [tag: "4c2b476aa25f35961abb783ba64433fe509fff82"]},
+  "getopt": {:hex, :getopt, "0.8.2"},
+  "nerves": {:git, "https://github.com/nerves-project/nerves.git", "b02a5ba978cb9d56b551dd8ccff731c89e65f765", []},
+  "nerves_io_ethernet": {:git, "https://github.com/nerves-project/nerves_io_ethernet.git", "bf9985bb445e3010afc5739fc0c75dafcdc22560", []},
+  "nerves_io_led": {:git, "https://github.com/nerves-project/nerves_io_led.git", "68c875a15cc556533c136545ddd7036f07fc03c4", []},
+  "providers": {:hex, :providers, "1.4.1"},
+  "relx": {:hex, :relx, "3.5.0"}}

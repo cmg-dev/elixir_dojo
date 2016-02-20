@@ -5,6 +5,6 @@ nerves-env.sh
 erl_crash.dump
 *.ez
 _images
-rel/blinky
-rel/files
+!rel/vm.args
+rel/*
 
