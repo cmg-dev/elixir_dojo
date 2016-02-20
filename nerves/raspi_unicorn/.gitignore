@@ -5,6 +5,5 @@ nerves-env.sh
 erl_crash.dump
 *.ez
 _images
-rel/blinky
+rel/raspi_unicorn
 rel/files
-
