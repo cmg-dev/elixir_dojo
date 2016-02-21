@@ -9,7 +9,8 @@ defmodule EmbeddedLed.Application do
 
     children = [
       worker(EmbeddedLed.Hardware.Ethernet, []),
-      worker(EmbeddedLed.Hardware.Led, [])
+      worker(EmbeddedLed.Hardware.Led, []),
+      worker(EmbeddedLed.Hardware.DummySender, [])
     ]
     opts = [strategy: :one_for_one, name: EmbeddedLed.Supervisor]
 

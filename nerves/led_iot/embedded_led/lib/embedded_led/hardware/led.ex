@@ -1,34 +1,23 @@
 defmodule EmbeddedLed.Hardware.Led do
+  use GenServer
+
   require Logger
 
   def start_link do
     Logger.debug "#{__MODULE__}.start_link"
 
-    loop
+    GenServer.start_link(__MODULE__, [], name: :led)
   end
 
-  def switch_on(led_key) do
+  def handle_cast({:on, led_key}, state) do
     Logger.debug "Switch led #{led_key} ON."
+
+    {:noreply, [led_key | state]}
   end
 
-  def switch_off(led_key) do
+  def handle_cast({:off, led_key}, state) do
     Logger.debug "Switch led #{led_key} OFF."
-  end
 
-  defp loop do
-    Logger.debug "#{__MODULE__} loop"
-    
-    receive do
-      {:on, led_key} ->
-        switch_on(led_key)
-
-      {:off, led_key} ->
-        switch_on(led_key)
-
-      other ->
-        Logger.warn "unhandled message"
-    end
-
-    loop
+    {:noreply, [led_key | state]}
   end
 end
