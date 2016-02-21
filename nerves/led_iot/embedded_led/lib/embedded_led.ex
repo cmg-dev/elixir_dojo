@@ -1,0 +1,2 @@
+defmodule EmbeddedLed do
+end
