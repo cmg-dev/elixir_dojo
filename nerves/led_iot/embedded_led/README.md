@@ -1,20 +1,18 @@
 # EmbeddedLed
 
-**TODO: Add description**
+## Start the server
 
-## Installation
+```bash
+./start_app.sh
+```
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+## Start a console
 
-  1. Add embedded_led to your list of dependencies in `mix.exs`:
+```bash
+./start_console.sh
+```
 
-        def deps do
-          [{:embedded_led, "~> 0.0.1"}]
-        end
-
-  2. Ensure embedded_led is started before your application:
-
-        def application do
-          [applications: [:embedded_led]]
-        end
-
+In the console type:
+```Elixir
+GenServer.cast({:led, :"led_iot@<full-hostname>"}, {:on, :led0})
+```
