@@ -16,6 +16,8 @@ defmodule EmbeddedLed.Hardware.Led do
   end
 
   defp loop do
+    Logger.debug "#{__MODULE__} loop"
+    
     receive do
       {:on, led_key} ->
         switch_on(led_key)
