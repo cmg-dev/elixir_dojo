@@ -15,7 +15,7 @@ defmodule EmbeddedLed.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [
-      applications: [:logger],
+      applications: [:logger, :nerves, :nerves_io_led, :nerves_io_ethernet],
       mod: {EmbeddedLed.Application, []}
     ]
   end
@@ -30,6 +30,10 @@ defmodule EmbeddedLed.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:nerves, github: "nerves-project/nerves"},
+      {:nerves_io_led, github: "nerves-project/nerves_io_led"},
+      {:nerves_io_ethernet, github: "nerves-project/nerves_io_ethernet"}
+    ]
   end
 end

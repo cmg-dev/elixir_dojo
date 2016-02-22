@@ -1,6 +1,8 @@
 defmodule EmbeddedLed.Hardware.Led do
   use GenServer
 
+  alias Nerves.IO.Led
+
   require Logger
 
   def start_link do
@@ -12,11 +14,15 @@ defmodule EmbeddedLed.Hardware.Led do
   def handle_cast({:on, led_key}, state) do
     Logger.debug "Switch led #{led_key} ON."
 
+    Led.set [{led_key, true}]
+
     {:noreply, [led_key | state]}
   end
 
   def handle_cast({:off, led_key}, state) do
     Logger.debug "Switch led #{led_key} OFF."
+
+    Led.set [{led_key, false}]
 
     {:noreply, [led_key | state]}
   end

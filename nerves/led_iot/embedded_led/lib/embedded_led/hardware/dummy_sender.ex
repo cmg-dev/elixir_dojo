@@ -4,7 +4,9 @@ defmodule EmbeddedLed.Hardware.DummySender do
   def start_link do
     Logger.debug "#{__MODULE__} start"
 
-    loop(:on, :led)
+    spawn fn ->
+      loop(:on, :led)
+    end
 
     {:ok, self}
   end
