@@ -26,4 +26,11 @@ defmodule EmbeddedLed.Hardware.Led do
 
     {:noreply, [led_key | state]}
   end
+
+  def handle_call(:led_keys, _from, state) do
+    led_keys = Application.get_env :embedded_led, :led_list
+
+    {:reply, led_keys, state}
+  end
+
 end
