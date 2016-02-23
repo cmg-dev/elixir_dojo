@@ -17,10 +17,10 @@ defmodule Nerves.IO.RaspiUnicorn.Driver do
   """
   def init(settings) do
     Logger.debug "#{__MODULE__} initializing: #{inspect settings}"
-    pin   = settings[:pin]
-    count = settings[:count]
+    x = settings[:led_x]
+    y = settings[:led_y]
 
-    cmd = "#{:code.priv_dir(:raspi_unicorn)}/unicorn_dance #{pin} #{count}"
+    cmd = "#{:code.priv_dir(:raspi_unicorn)}/unicorns #{x} #{y}"
     Logger.debug "#{__MODULE__} calling: #{cmd}"
     port = Port.open({:spawn, cmd}, [:binary])
     {:ok, port}

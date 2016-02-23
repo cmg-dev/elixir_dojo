@@ -14,6 +14,14 @@ defmodule Mix.Tasks.Compile.UnicornDance do
   end
 end
 
+defmodule Mix.Tasks.Compile.Unicorns do
+  def run(_) do
+    0 = Mix.Shell.IO.cmd("make priv/unicorns")
+    Mix.Project.build_structure
+    :ok
+  end
+end
+
 defmodule RaspiUnicorn.Mixfile do
   use Mix.Project
 
@@ -21,6 +29,7 @@ defmodule RaspiUnicorn.Mixfile do
     [app: :raspi_unicorn,
      version: "0.0.1",
      elixir: "~> 1.1",
+     compilers: [:Unicorns, :elixir, :app],
      compilers: [:UnicornDance, :elixir, :app],
      compilers: [:Ws281x, :elixir, :app],
      build_embedded: Mix.env == :prod,

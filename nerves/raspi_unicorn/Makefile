@@ -15,3 +15,13 @@ priv/unicorn_dance: $(SOURCE_DIR)/board_info.c \
 						$(SOURCE_DIR)/main.c
 	@mkdir -p priv
 	$(CC) $(CFLAGS) -o $@ $^
+
+SOURCE_DIR=src/unicorns
+priv/unicorns: $(SOURCE_DIR)/board_info.c \
+						$(SOURCE_DIR)/mailbox.c \
+						$(SOURCE_DIR)/dma.c \
+						$(SOURCE_DIR)/pwm.c \
+						$(SOURCE_DIR)/ws2811.c \
+						$(SOURCE_DIR)/main.c
+	@mkdir -p priv
+	$(CC) $(CFLAGS) -o $@ $^

@@ -17,9 +17,18 @@ defmodule RaspiUnicorn do
   defp start_child do
     import Supervisor.Spec
 
-    settings = [pin: 18, count: 3]
+    settings = [led_x: 1, led_y: 1]
 
-    children = [worker(Nerves.IO.RaspiUnicorn.Driver, [settings, [name: :unicorn_dance]])]
+    children = [
+      #worker(Nerves.IO.RaspiUnicorn.Driver, [[led_x: 0, led_y: 0], [name: :x0y0]], id: :x0y0),
+      #worker(Nerves.IO.RaspiUnicorn.Driver, [[led_x: 1, led_y: 1], [name: :x1y1]], id: :x1y1),
+      worker(Nerves.IO.RaspiUnicorn.Driver, [[led_x: 2, led_y: 2], [name: :x2y2]], id: :x2y2),
+      #worker(Nerves.IO.RaspiUnicorn.Driver, [[led_x: 3, led_y: 3], [name: :x3y3]], id: :x3y3),
+      #worker(Nerves.IO.RaspiUnicorn.Driver, [[led_x: 4, led_y: 4], [name: :x4y4]], id: :x4y4),
+      #worker(Nerves.IO.RaspiUnicorn.Driver, [[led_x: 5, led_y: 5], [name: :x5y5]], id: :x5y5),
+      #worker(Nerves.IO.RaspiUnicorn.Driver, [[led_x: 6, led_y: 6], [name: :x6y6]], id: :x6y6),
+      #worker(Nerves.IO.RaspiUnicorn.Driver, [[led_x: 7, led_y: 7], [name: :x7y7]], id: :x7y7)
+    ]
     Supervisor.start_link(children, strategy: :one_for_one)
 
     Logger.debug "#{__MODULE__} Setup done"
