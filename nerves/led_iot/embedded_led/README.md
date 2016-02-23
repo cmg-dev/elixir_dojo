@@ -20,5 +20,9 @@ In the console type:
 Node.ping "led_iot@nerves.fritz.box"
 #  result :pong (not :pang)
 
+# get the led list
+GenServer.call({:led, :"led_iot@nerves.fritz.box"}, :led_keys)
+
+# set the led
 GenServer.cast({:led, :"led_iot@nerves.fritz.box"}, {:on, :led0})
 ```

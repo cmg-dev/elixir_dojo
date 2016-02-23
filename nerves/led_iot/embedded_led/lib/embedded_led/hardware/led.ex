@@ -19,6 +19,14 @@ defmodule EmbeddedLed.Hardware.Led do
     {:noreply, [led_key | state]}
   end
 
+  def handle_cast({:on, led_key, led_state}, state) do
+    Logger.debug "Switch led #{led_key} to #{led_state}."
+
+    Led.set [{led_key, led_state}]
+
+    {:noreply, [led_key | state]}
+  end
+
   def handle_cast({:off, led_key}, state) do
     Logger.debug "Switch led #{led_key} OFF."
 
@@ -29,6 +37,8 @@ defmodule EmbeddedLed.Hardware.Led do
 
   def handle_call(:led_keys, _from, state) do
     led_keys = Application.get_env :embedded_led, :led_list
+
+    Logger.debug "reply led_keys: #{inspect(led_keys)}"
 
     {:reply, led_keys, state}
   end
